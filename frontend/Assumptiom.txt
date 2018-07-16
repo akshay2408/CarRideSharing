@@ -1,0 +1,45 @@
+My assumption
+
+1) We have Home page(Index page) where 3 option
+   1)Login
+   2)SignUP/Registration
+   3)Contact Us
+
+2) In the registration page we have some fields
+   1)First Name
+   2)Last Name
+   3)Email
+   4)PhoneNumber
+   5)Address (address1, address2, zip_code, city, country)
+   6)Driving license
+   7)Car model
+   8)Car make
+   9)Car yearI
+
+3) After login , User can do several things
+   1) Check self profile (Also change some data like address add new address, Upload profile picture)
+   2) Change password
+   3) Sign out
+
+   4) Place a ride and Request a ride:-
+          Place a Ride =: User have a car where he want to share car, then user place a ride (Delhi to Mumbai)
+                          with these fields: 1)To
+                                             2)From
+                                             3)Place
+                                             4)Date
+                                             5)No of seats (Here number of seats available for share)
+                                             6)Cost
+          Request a Ride =: Here another user want to go Delhi to Mumbai but user haven't any car so this user make request for a ride
+                            with these fields: 1)To
+                                               2)From
+                                               3)Place
+                                               4)Date
+                                               5)No of seats (Number of seats needed)
+                                               6)Cost
+
+4)Contact US:
+      Here any user (Authorized and not authorized )can contact us with given fields
+      1)Name
+      2)Phone
+      3)Email
+      4)Message
