@@ -59,4 +59,6 @@ This sample includes:
 
 
 FrontEnd:
-  -install npm
+  -npm install
+
+Both application will run simultaneously
