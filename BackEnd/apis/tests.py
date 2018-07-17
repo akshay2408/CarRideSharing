@@ -22,7 +22,6 @@ class UserTest(TestCase):
     def test_login(self):
         """
         """
-
         user1 = UserFactory(username='test_data')
         user1.set_password('198412')
         user1.save()
@@ -65,8 +64,9 @@ class UserTest(TestCase):
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
     def test_contacus(self):
-        # changing Superuser authentication does not effect staff authentication
-        # auth-token is failing without UserProfile
+      """
+        Test contactus
+      """
         data={
               'name':'Jhon',
               'phone_number':'+91896213131',

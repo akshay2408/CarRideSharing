@@ -15,16 +15,16 @@ class Profile(models.Model):
     user_type = models.IntegerField(choices=USER_CHOICES)
     class Meta:
         abstract=True
- # related_name="%(class)s"
 
 class Client(Profile):
-    #
-    #
-    #
+    """
+    Client model
+    """
     clientIdentification = models.CharField(max_length=100, null=True, blank=True)
 
 class Driver(Profile):
     """
+    Driver model
     """
     driver_license  = models.CharField(max_length=100, null=True, blank=True)
     car_model = models.CharField(max_length=100, null=True, blank=True)
@@ -34,8 +34,8 @@ class Driver(Profile):
 
 class Address(models.Model):
     """
+    Address model
     """
-
     client = models.ForeignKey(Client, null=True, blank=True, on_delete=models.SET_NULL)
     driver = models.ForeignKey(Driver, null=True, blank=True, on_delete=models.SET_NULL)
     address1 = models.CharField(max_length=1024, null=True, blank=True)
@@ -47,6 +47,7 @@ class Address(models.Model):
 
 class RideRequest(models.Model):
     """
+    Reqest or Place a ride model
     """
     client = models.ForeignKey(Client, null=True, blank=True, on_delete=models.SET_NULL)
     driver = models.ForeignKey(Driver, null=True, blank=True, on_delete=models.SET_NULL)
@@ -60,6 +61,7 @@ class RideRequest(models.Model):
 
 class Contact(models.Model):
     """
+    ContactUs Model
     """
     name = models.CharField(max_length=300)
     phone_number = models.IntegerField(null=True, blank=True)

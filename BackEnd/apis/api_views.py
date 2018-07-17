@@ -23,6 +23,9 @@ from django.shortcuts import get_object_or_404
 
 
 class ObtainAuthToken(auth_views.ObtainAuthToken):
+    """
+    Get auth-token
+    """
     def post(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
@@ -33,6 +36,9 @@ class ObtainAuthToken(auth_views.ObtainAuthToken):
 obtain_auth_token = ObtainAuthToken.as_view()
 
 class UserChangePassword(generics.UpdateAPIView):
+    """
+    Change password
+    """
     queryset = User.objects.all()
     serializer_class = UserSerializer
     lookup_field = 'username'
@@ -43,6 +49,8 @@ class ClientProfile(viewsets.ViewSet):
     Client/Driver registrations and informations
     """
     def get_serializer_class(self,request):
+        """
+        """
         if request.data.get('user_type') == '1':
             return ClientSerializer
         if request.data.get('user_type') == '2':
@@ -50,6 +58,8 @@ class ClientProfile(viewsets.ViewSet):
         return serializers.Default
 
     def get_user_instance(self, request):
+        """
+        """
         try:
             client=request.user.client
             return {'client':client}
@@ -58,6 +68,9 @@ class ClientProfile(viewsets.ViewSet):
             return {'driver':driver}
 
     def create(self, request, *args, **kwargs):
+        """
+        Create Client profile
+        """
         ser=self.get_serializer_class(request)
         serializer = ser(data=request.data, context={'request': request})
         if serializer.is_valid(raise_exception=True):
@@ -66,6 +79,9 @@ class ClientProfile(viewsets.ViewSet):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def retrieve(self, request, pk=None):
+        """
+        Show client data
+        """
         user_name = self.get_user_instance(request)
         driver=user_name.get('driver')
         client=user_name.get('client')
@@ -90,6 +106,9 @@ class RideRequestPlace(viewsets.ViewSet):
             return {'driver':driver}
 
     def list(self, request):
+        """
+        Show all list
+        """
         driver_request = RideRequest.objects.filter(client_id__isnull=True)
         client_request = RideRequest.objects.filter(driver_id__isnull=True)
         serializer1 = self.serializer_class(driver_request, many=True)
@@ -105,6 +124,7 @@ class RideRequestPlace(viewsets.ViewSet):
 
     def create(self, request, *args, **kwargs):
         """
+        Make ride request or place
         """
         user_name = self.get_user_instance(request)
         serializer = self.serializer_class(data=request.data)
@@ -124,8 +144,8 @@ class RideRequestPlace(viewsets.ViewSet):
 
 @permission_classes((AllowAny,))
 class ContactUs(ModelViewSet):
-    # permission_classes = (AllowAny,)
-
+    """
+    """
     queryset = Contact.objects.all()
     serializer_class = ContactSerializer
 
